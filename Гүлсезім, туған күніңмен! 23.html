@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Гүлсезім, туған күніңмен! 23</title>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;800&family=Nunito:wght@400;700&display=swap&subset=cyrillic-ext" rel="stylesheet">
+<style>
+:root{--bg:#24103f;--bg2:#3a1a63;--ink:#fff7fb;--soft:#d9c6f2;--pink:#ff5c8a;--sun:#ffb347;--mint:#7fe3c8;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#24103f}}
+*,*::before,*::after{box-sizing:inherit}
+html{color-scheme:dark;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:radial-gradient(120% 80% at 50% 0%,var(--bg2),var(--bg) 70%) fixed;color:var(--ink);
+font:400 18px/1.6 Nunito,system-ui,sans-serif;overflow-x:hidden}
+canvas{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:5}
+main{max-width:760px;margin:0 auto;padding:48px 22px 72px;text-align:center}
+h1,.num{font-family:Unbounded,Nunito,system-ui,sans-serif}
+h1{font-size:clamp(26px,6vw,40px);font-weight:600;margin:0 0 4px;line-height:1.2}
+.name{font-weight:800;color:var(--sun)}
+.num{font-weight:800;font-size:clamp(150px,42vw,280px);line-height:.9;margin:8px 0 0;
+background:linear-gradient(160deg,var(--pink),var(--sun));-webkit-background-clip:text;background-clip:text;color:transparent;
+filter:drop-shadow(0 12px 30px rgba(255,92,138,.35))}
+.cake{display:flex;justify-content:center;gap:clamp(8px,3vw,18px);margin:6px 0 0}
+.candle{width:14px;height:44px;border-radius:4px;background:linear-gradient(var(--mint),#3fb89c);position:relative}
+.candle::before{content:"";position:absolute;left:50%;top:-20px;width:12px;height:18px;margin-left:-6px;border-radius:50% 50% 50% 50%/65% 65% 35% 35%;
+background:radial-gradient(circle at 50% 70%,#fff3b0,var(--sun) 60%,var(--pink));transform-origin:50% 100%;animation:fl .5s ease-in-out infinite alternate;transition:opacity .4s,transform .4s}
+.candle:nth-child(2)::before{animation-delay:.15s}.candle:nth-child(3)::before{animation-delay:.3s}
+.out .candle::before{opacity:0;transform:scale(.2)}
+@keyframes fl{to{transform:scale(1.15,.9) rotate(4deg)}}
+.plate{height:26px;width:min(420px,88%);margin:0 auto;border-radius:0 0 40px 40px;background:var(--pink)}
+button{font:700 18px Unbounded,Nunito,sans-serif;margin:34px 0 8px;padding:16px 30px;border:0;border-radius:999px;background:var(--sun);color:#3a1a00;cursor:pointer;transition:transform .15s}
+button:hover{transform:scale(1.04)}button:active{transform:scale(.97)}
+button:focus-visible{outline:3px solid var(--mint);outline-offset:4px}
+.hint{color:var(--soft);font-size:15px;min-height:1.6em;margin:0}
+section{margin-top:64px;text-align:left}
+h2{font:600 22px/1.3 Unbounded,Nunito,sans-serif;margin:0 0 18px;text-align:center}
+.wish{padding:20px 22px;margin:0 0 14px;border-radius:22px 22px 22px 6px;background:rgba(255,255,255,.07);border-left:5px solid var(--pink)}
+.wish:nth-child(2){border-left-color:var(--sun);border-radius:22px 6px 22px 22px}
+.wish:nth-child(3){border-left-color:var(--mint)}
+.wish b{display:block;font-family:Unbounded,Nunito,sans-serif;font-size:17px;margin-bottom:4px}
+.wish p{margin:0;color:var(--soft)}
+#msg{display:none;margin-top:40px;font:600 22px/1.4 Unbounded,Nunito,sans-serif;color:var(--mint)}
+.show #msg{display:block}
+footer{margin-top:56px;color:var(--soft);font-size:15px;text-align:center}
+@media (prefers-reduced-motion:reduce){.candle::before{animation:none}}
+</style>
+</head>
+<body>
+<canvas id="c" aria-hidden="true"></canvas>
+<main id="root">
+  <h1>Туған күніңмен,<br><span class="name">Гүлсезім!</span></h1>
+  <div class="num" aria-label="23 жас">23</div>
+  <div class="cake" aria-hidden="true"><div class="candle"></div><div class="candle"></div><div class="candle"></div></div>
+  <div class="plate" aria-hidden="true"></div>
+  <button id="b" type="button">Шамды үрле</button>
+  <p class="hint" id="h">Тілегіңді ойла да, түймені бас</p>
+  <p id="msg">Тілегің қабыл болсын, Гүлсезім! ✨</p>
+
+  <section>
+    <h2>Саған тілегім</h2>
+    <div class="wish"><b>Бақыт</b><p>Күлкің ешқашан өшпесін, күн сайын көңілің көтеріңкі болсын.</p></div>
+    <div class="wish"><b>Сәттілік</b><p>Бастаған ісің оңынан болып, арманыңның бәрі орындалсын.</p></div>
+    <div class="wish"><b>Жақындар</b><p>Қасыңда әрдайым сені сүйетін, түсінетін адамдар жүрсін.</p></div>
+  </section>
+  <footer>23 жас — тек басы. Жарқын болашақ сені күтіп тұр 💜</footer>
+</main>
+<script>
+(function(){
+var cv=document.getElementById('c'),x=cv.getContext('2d'),P=[],run=false,
+cols=['#ff5c8a','#ffb347','#7fe3c8','#fff7fb','#b98cff'];
+function size(){cv.width=innerWidth;cv.height=innerHeight}size();addEventListener('resize',size);
+function burst(){
+  for(var i=0;i<160;i++){P.push({x:Math.random()*cv.width,y:-20-Math.random()*cv.height*.4,
+  vx:(Math.random()-.5)*3,vy:2+Math.random()*4,r:Math.random()*6,s:4+Math.random()*7,c:cols[i%5],a:1})}
+  if(!run){run=true;requestAnimationFrame(tick)}
+}
+function tick(){
+  x.clearRect(0,0,cv.width,cv.height);
+  P=P.filter(function(p){return p.y<cv.height+20});
+  P.forEach(function(p){p.x+=p.vx;p.y+=p.vy;p.r+=.12;x.save();x.translate(p.x,p.y);x.rotate(p.r);
+    x.fillStyle=p.c;x.fillRect(-p.s/2,-p.s/4,p.s,p.s/2);x.restore()});
+  if(P.length)requestAnimationFrame(tick);else run=false;
+}
+var root=document.getElementById('root'),b=document.getElementById('b'),h=document.getElementById('h'),out=false;
+b.addEventListener('click',function(){
+  out=!out;
+  root.classList.toggle('out',out);root.classList.toggle('show',out);
+  b.textContent=out?'Қайта жағу':'Шамды үрле';
+  h.textContent=out?'Ура! Құттықтаймыз! 🎉':'Тілегіңді ойла да, түймені бас';
+  if(out&&!matchMedia('(prefers-reduced-motion:reduce)').matches)burst();
+});
+})();
+</script>
+</body>
+</html>
